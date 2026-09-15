@@ -14,16 +14,326 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      empleado_remuneraciones: {
+        Row: {
+          actualizado_en: string
+          empleado_id: string
+          id: string
+          sueldo_base: number
+        }
+        Insert: {
+          actualizado_en?: string
+          empleado_id: string
+          id?: string
+          sueldo_base?: number
+        }
+        Update: {
+          actualizado_en?: string
+          empleado_id?: string
+          id?: string
+          sueldo_base?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "empleado_remuneraciones_empleado_id_fkey"
+            columns: ["empleado_id"]
+            isOneToOne: true
+            referencedRelation: "empleados"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      empleados: {
+        Row: {
+          area: string | null
+          cargo: string | null
+          creado_en: string
+          fecha_ingreso: string | null
+          id: string
+          nombre: string
+          tarifa_hora: number
+          user_id: string | null
+        }
+        Insert: {
+          area?: string | null
+          cargo?: string | null
+          creado_en?: string
+          fecha_ingreso?: string | null
+          id?: string
+          nombre: string
+          tarifa_hora?: number
+          user_id?: string | null
+        }
+        Update: {
+          area?: string | null
+          cargo?: string | null
+          creado_en?: string
+          fecha_ingreso?: string | null
+          id?: string
+          nombre?: string
+          tarifa_hora?: number
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      inventario: {
+        Row: {
+          codigo: string
+          costo_unitario: number
+          creado_en: string
+          id: string
+          maquina_id: string | null
+          nombre: string
+          proveedor: string | null
+          stock_actual: number
+          stock_minimo: number
+          unidad: string
+        }
+        Insert: {
+          codigo: string
+          costo_unitario?: number
+          creado_en?: string
+          id?: string
+          maquina_id?: string | null
+          nombre: string
+          proveedor?: string | null
+          stock_actual?: number
+          stock_minimo?: number
+          unidad?: string
+        }
+        Update: {
+          codigo?: string
+          costo_unitario?: number
+          creado_en?: string
+          id?: string
+          maquina_id?: string | null
+          nombre?: string
+          proveedor?: string | null
+          stock_actual?: number
+          stock_minimo?: number
+          unidad?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inventario_maquina_id_fkey"
+            columns: ["maquina_id"]
+            isOneToOne: false
+            referencedRelation: "maquinas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      maquinas: {
+        Row: {
+          anio: number | null
+          codigo: string
+          creado_en: string
+          estado: Database["public"]["Enums"]["estado_maquina"]
+          fecha_proxima_mantencion: string | null
+          fecha_ultima_mantencion: string | null
+          foto_url: string | null
+          id: string
+          marca: string | null
+          modelo: string | null
+          nombre: string
+          periodicidad_dias: number
+          ubicacion: string | null
+        }
+        Insert: {
+          anio?: number | null
+          codigo: string
+          creado_en?: string
+          estado?: Database["public"]["Enums"]["estado_maquina"]
+          fecha_proxima_mantencion?: string | null
+          fecha_ultima_mantencion?: string | null
+          foto_url?: string | null
+          id?: string
+          marca?: string | null
+          modelo?: string | null
+          nombre: string
+          periodicidad_dias?: number
+          ubicacion?: string | null
+        }
+        Update: {
+          anio?: number | null
+          codigo?: string
+          creado_en?: string
+          estado?: Database["public"]["Enums"]["estado_maquina"]
+          fecha_proxima_mantencion?: string | null
+          fecha_ultima_mantencion?: string | null
+          foto_url?: string | null
+          id?: string
+          marca?: string | null
+          modelo?: string | null
+          nombre?: string
+          periodicidad_dias?: number
+          ubicacion?: string | null
+        }
+        Relationships: []
+      }
+      orden_trabajo_insumos: {
+        Row: {
+          cantidad_usada: number
+          costo_al_momento: number
+          creado_en: string
+          id: string
+          insumo_id: string
+          orden_id: string
+        }
+        Insert: {
+          cantidad_usada: number
+          costo_al_momento?: number
+          creado_en?: string
+          id?: string
+          insumo_id: string
+          orden_id: string
+        }
+        Update: {
+          cantidad_usada?: number
+          costo_al_momento?: number
+          creado_en?: string
+          id?: string
+          insumo_id?: string
+          orden_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "orden_trabajo_insumos_insumo_id_fkey"
+            columns: ["insumo_id"]
+            isOneToOne: false
+            referencedRelation: "inventario"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "orden_trabajo_insumos_orden_id_fkey"
+            columns: ["orden_id"]
+            isOneToOne: false
+            referencedRelation: "ordenes_trabajo"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ordenes_trabajo: {
+        Row: {
+          creado_en: string
+          creado_por: string | null
+          descripcion: string | null
+          estado: Database["public"]["Enums"]["estado_orden"]
+          fecha_ejecucion: string | null
+          fecha_programada: string
+          folio: number
+          horas_mano_obra: number
+          id: string
+          maquina_id: string
+          observaciones: string | null
+          tecnico_id: string | null
+          tipo: Database["public"]["Enums"]["tipo_orden"]
+        }
+        Insert: {
+          creado_en?: string
+          creado_por?: string | null
+          descripcion?: string | null
+          estado?: Database["public"]["Enums"]["estado_orden"]
+          fecha_ejecucion?: string | null
+          fecha_programada: string
+          folio?: number
+          horas_mano_obra?: number
+          id?: string
+          maquina_id: string
+          observaciones?: string | null
+          tecnico_id?: string | null
+          tipo?: Database["public"]["Enums"]["tipo_orden"]
+        }
+        Update: {
+          creado_en?: string
+          creado_por?: string | null
+          descripcion?: string | null
+          estado?: Database["public"]["Enums"]["estado_orden"]
+          fecha_ejecucion?: string | null
+          fecha_programada?: string
+          folio?: number
+          horas_mano_obra?: number
+          id?: string
+          maquina_id?: string
+          observaciones?: string | null
+          tecnico_id?: string | null
+          tipo?: Database["public"]["Enums"]["tipo_orden"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ordenes_trabajo_maquina_id_fkey"
+            columns: ["maquina_id"]
+            isOneToOne: false
+            referencedRelation: "maquinas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ordenes_trabajo_tecnico_id_fkey"
+            columns: ["tecnico_id"]
+            isOneToOne: false
+            referencedRelation: "empleados"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      perfiles: {
+        Row: {
+          creado_en: string
+          email: string
+          id: string
+          nombre: string
+        }
+        Insert: {
+          creado_en?: string
+          email?: string
+          id: string
+          nombre?: string
+        }
+        Update: {
+          creado_en?: string
+          email?: string
+          id?: string
+          nombre?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "tecnico" | "rrhh"
+      estado_maquina: "operativa" | "en_mantencion" | "fuera_de_servicio"
+      estado_orden: "pendiente" | "en_proceso" | "completada" | "cancelada"
+      tipo_orden: "preventiva" | "correctiva"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +460,11 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "tecnico", "rrhh"],
+      estado_maquina: ["operativa", "en_mantencion", "fuera_de_servicio"],
+      estado_orden: ["pendiente", "en_proceso", "completada", "cancelada"],
+      tipo_orden: ["preventiva", "correctiva"],
+    },
   },
 } as const
