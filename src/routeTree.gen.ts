@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedPanelRouteImport } from './routes/_authenticated/panel'
+import { Route as AuthenticatedMaquinariaIndexRouteImport } from './routes/_authenticated/maquinaria.index'
+import { Route as AuthenticatedMaquinariaIdRouteImport } from './routes/_authenticated/maquinaria.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -33,16 +35,32 @@ const AuthenticatedPanelRoute = AuthenticatedPanelRouteImport.update({
   path: '/panel',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedMaquinariaIndexRoute =
+  AuthenticatedMaquinariaIndexRouteImport.update({
+    id: '/maquinaria/',
+    path: '/maquinaria/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMaquinariaIdRoute =
+  AuthenticatedMaquinariaIdRouteImport.update({
+    id: '/maquinaria/$id',
+    path: '/maquinaria/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/panel': typeof AuthenticatedPanelRoute
+  '/maquinaria/$id': typeof AuthenticatedMaquinariaIdRoute
+  '/maquinaria/': typeof AuthenticatedMaquinariaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/panel': typeof AuthenticatedPanelRoute
+  '/maquinaria/$id': typeof AuthenticatedMaquinariaIdRoute
+  '/maquinaria': typeof AuthenticatedMaquinariaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -50,13 +68,22 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/panel': typeof AuthenticatedPanelRoute
+  '/_authenticated/maquinaria/$id': typeof AuthenticatedMaquinariaIdRoute
+  '/_authenticated/maquinaria/': typeof AuthenticatedMaquinariaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/panel'
+  fullPaths: '/' | '/auth' | '/panel' | '/maquinaria/$id' | '/maquinaria/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/panel'
-  id: '__root__' | '/' | '/_authenticated' | '/auth' | '/_authenticated/panel'
+  to: '/' | '/auth' | '/panel' | '/maquinaria/$id' | '/maquinaria'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/panel'
+    | '/_authenticated/maquinaria/$id'
+    | '/_authenticated/maquinaria/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,15 +122,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPanelRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/maquinaria/': {
+      id: '/_authenticated/maquinaria/'
+      path: '/maquinaria'
+      fullPath: '/maquinaria/'
+      preLoaderRoute: typeof AuthenticatedMaquinariaIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/maquinaria/$id': {
+      id: '/_authenticated/maquinaria/$id'
+      path: '/maquinaria/$id'
+      fullPath: '/maquinaria/$id'
+      preLoaderRoute: typeof AuthenticatedMaquinariaIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedPanelRoute: typeof AuthenticatedPanelRoute
+  AuthenticatedMaquinariaIdRoute: typeof AuthenticatedMaquinariaIdRoute
+  AuthenticatedMaquinariaIndexRoute: typeof AuthenticatedMaquinariaIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedPanelRoute: AuthenticatedPanelRoute,
+  AuthenticatedMaquinariaIdRoute: AuthenticatedMaquinariaIdRoute,
+  AuthenticatedMaquinariaIndexRoute: AuthenticatedMaquinariaIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
