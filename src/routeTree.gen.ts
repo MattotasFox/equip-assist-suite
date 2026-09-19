@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedEmpleadosRouteImport } from './routes/_authenticated/empleados'
+import { Route as AuthenticatedInventarioRouteImport } from './routes/_authenticated/inventario'
 import { Route as AuthenticatedPanelRouteImport } from './routes/_authenticated/panel'
 import { Route as AuthenticatedMaquinariaIndexRouteImport } from './routes/_authenticated/maquinaria.index'
 import { Route as AuthenticatedMaquinariaIdRouteImport } from './routes/_authenticated/maquinaria.$id'
@@ -29,6 +31,16 @@ const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedEmpleadosRoute = AuthenticatedEmpleadosRouteImport.update({
+  id: '/empleados',
+  path: '/empleados',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedInventarioRoute = AuthenticatedInventarioRouteImport.update({
+  id: '/inventario',
+  path: '/inventario',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedPanelRoute = AuthenticatedPanelRouteImport.update({
   id: '/panel',
@@ -51,6 +63,8 @@ const AuthenticatedMaquinariaIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/empleados': typeof AuthenticatedEmpleadosRoute
+  '/inventario': typeof AuthenticatedInventarioRoute
   '/panel': typeof AuthenticatedPanelRoute
   '/maquinaria/$id': typeof AuthenticatedMaquinariaIdRoute
   '/maquinaria/': typeof AuthenticatedMaquinariaIndexRoute
@@ -58,6 +72,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/empleados': typeof AuthenticatedEmpleadosRoute
+  '/inventario': typeof AuthenticatedInventarioRoute
   '/panel': typeof AuthenticatedPanelRoute
   '/maquinaria/$id': typeof AuthenticatedMaquinariaIdRoute
   '/maquinaria': typeof AuthenticatedMaquinariaIndexRoute
@@ -67,20 +83,38 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/empleados': typeof AuthenticatedEmpleadosRoute
+  '/_authenticated/inventario': typeof AuthenticatedInventarioRoute
   '/_authenticated/panel': typeof AuthenticatedPanelRoute
   '/_authenticated/maquinaria/$id': typeof AuthenticatedMaquinariaIdRoute
   '/_authenticated/maquinaria/': typeof AuthenticatedMaquinariaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/panel' | '/maquinaria/$id' | '/maquinaria/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/empleados'
+    | '/inventario'
+    | '/panel'
+    | '/maquinaria/$id'
+    | '/maquinaria/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/panel' | '/maquinaria/$id' | '/maquinaria'
+  to:
+    | '/'
+    | '/auth'
+    | '/empleados'
+    | '/inventario'
+    | '/panel'
+    | '/maquinaria/$id'
+    | '/maquinaria'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/_authenticated/empleados'
+    | '/_authenticated/inventario'
     | '/_authenticated/panel'
     | '/_authenticated/maquinaria/$id'
     | '/_authenticated/maquinaria/'
@@ -115,6 +149,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/empleados': {
+      id: '/_authenticated/empleados'
+      path: '/empleados'
+      fullPath: '/empleados'
+      preLoaderRoute: typeof AuthenticatedEmpleadosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/inventario': {
+      id: '/_authenticated/inventario'
+      path: '/inventario'
+      fullPath: '/inventario'
+      preLoaderRoute: typeof AuthenticatedInventarioRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/panel': {
       id: '/_authenticated/panel'
       path: '/panel'
@@ -140,12 +188,16 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedEmpleadosRoute: typeof AuthenticatedEmpleadosRoute
+  AuthenticatedInventarioRoute: typeof AuthenticatedInventarioRoute
   AuthenticatedPanelRoute: typeof AuthenticatedPanelRoute
   AuthenticatedMaquinariaIdRoute: typeof AuthenticatedMaquinariaIdRoute
   AuthenticatedMaquinariaIndexRoute: typeof AuthenticatedMaquinariaIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedEmpleadosRoute: AuthenticatedEmpleadosRoute,
+  AuthenticatedInventarioRoute: AuthenticatedInventarioRoute,
   AuthenticatedPanelRoute: AuthenticatedPanelRoute,
   AuthenticatedMaquinariaIdRoute: AuthenticatedMaquinariaIdRoute,
   AuthenticatedMaquinariaIndexRoute: AuthenticatedMaquinariaIndexRoute,
