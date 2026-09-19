@@ -12,7 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedEmpleadosRouteImport } from './routes/_authenticated/empleados'
+import { Route as AuthenticatedInventarioRouteImport } from './routes/_authenticated/inventario'
+import { Route as AuthenticatedOrdenesRouteImport } from './routes/_authenticated/ordenes'
 import { Route as AuthenticatedPanelRouteImport } from './routes/_authenticated/panel'
+import { Route as AuthenticatedReportesRouteImport } from './routes/_authenticated/reportes'
+import { Route as AuthenticatedUsuariosRouteImport } from './routes/_authenticated/usuarios'
 import { Route as AuthenticatedMaquinariaIndexRouteImport } from './routes/_authenticated/maquinaria.index'
 import { Route as AuthenticatedMaquinariaIdRouteImport } from './routes/_authenticated/maquinaria.$id'
 
@@ -30,9 +35,34 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedEmpleadosRoute = AuthenticatedEmpleadosRouteImport.update({
+  id: '/empleados',
+  path: '/empleados',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedInventarioRoute = AuthenticatedInventarioRouteImport.update({
+  id: '/inventario',
+  path: '/inventario',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedOrdenesRoute = AuthenticatedOrdenesRouteImport.update({
+  id: '/ordenes',
+  path: '/ordenes',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedPanelRoute = AuthenticatedPanelRouteImport.update({
   id: '/panel',
   path: '/panel',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedReportesRoute = AuthenticatedReportesRouteImport.update({
+  id: '/reportes',
+  path: '/reportes',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedUsuariosRoute = AuthenticatedUsuariosRouteImport.update({
+  id: '/usuarios',
+  path: '/usuarios',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedMaquinariaIndexRoute =
@@ -51,14 +81,24 @@ const AuthenticatedMaquinariaIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/empleados': typeof AuthenticatedEmpleadosRoute
+  '/inventario': typeof AuthenticatedInventarioRoute
+  '/ordenes': typeof AuthenticatedOrdenesRoute
   '/panel': typeof AuthenticatedPanelRoute
+  '/reportes': typeof AuthenticatedReportesRoute
+  '/usuarios': typeof AuthenticatedUsuariosRoute
   '/maquinaria/$id': typeof AuthenticatedMaquinariaIdRoute
   '/maquinaria/': typeof AuthenticatedMaquinariaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/empleados': typeof AuthenticatedEmpleadosRoute
+  '/inventario': typeof AuthenticatedInventarioRoute
+  '/ordenes': typeof AuthenticatedOrdenesRoute
   '/panel': typeof AuthenticatedPanelRoute
+  '/reportes': typeof AuthenticatedReportesRoute
+  '/usuarios': typeof AuthenticatedUsuariosRoute
   '/maquinaria/$id': typeof AuthenticatedMaquinariaIdRoute
   '/maquinaria': typeof AuthenticatedMaquinariaIndexRoute
 }
@@ -67,21 +107,51 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/empleados': typeof AuthenticatedEmpleadosRoute
+  '/_authenticated/inventario': typeof AuthenticatedInventarioRoute
+  '/_authenticated/ordenes': typeof AuthenticatedOrdenesRoute
   '/_authenticated/panel': typeof AuthenticatedPanelRoute
+  '/_authenticated/reportes': typeof AuthenticatedReportesRoute
+  '/_authenticated/usuarios': typeof AuthenticatedUsuariosRoute
   '/_authenticated/maquinaria/$id': typeof AuthenticatedMaquinariaIdRoute
   '/_authenticated/maquinaria/': typeof AuthenticatedMaquinariaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/panel' | '/maquinaria/$id' | '/maquinaria/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/empleados'
+    | '/inventario'
+    | '/ordenes'
+    | '/panel'
+    | '/reportes'
+    | '/usuarios'
+    | '/maquinaria/$id'
+    | '/maquinaria/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/panel' | '/maquinaria/$id' | '/maquinaria'
+  to:
+    | '/'
+    | '/auth'
+    | '/empleados'
+    | '/inventario'
+    | '/ordenes'
+    | '/panel'
+    | '/reportes'
+    | '/usuarios'
+    | '/maquinaria/$id'
+    | '/maquinaria'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/_authenticated/empleados'
+    | '/_authenticated/inventario'
+    | '/_authenticated/ordenes'
     | '/_authenticated/panel'
+    | '/_authenticated/reportes'
+    | '/_authenticated/usuarios'
     | '/_authenticated/maquinaria/$id'
     | '/_authenticated/maquinaria/'
   fileRoutesById: FileRoutesById
@@ -115,11 +185,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/empleados': {
+      id: '/_authenticated/empleados'
+      path: '/empleados'
+      fullPath: '/empleados'
+      preLoaderRoute: typeof AuthenticatedEmpleadosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/inventario': {
+      id: '/_authenticated/inventario'
+      path: '/inventario'
+      fullPath: '/inventario'
+      preLoaderRoute: typeof AuthenticatedInventarioRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/ordenes': {
+      id: '/_authenticated/ordenes'
+      path: '/ordenes'
+      fullPath: '/ordenes'
+      preLoaderRoute: typeof AuthenticatedOrdenesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/panel': {
       id: '/_authenticated/panel'
       path: '/panel'
       fullPath: '/panel'
       preLoaderRoute: typeof AuthenticatedPanelRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/reportes': {
+      id: '/_authenticated/reportes'
+      path: '/reportes'
+      fullPath: '/reportes'
+      preLoaderRoute: typeof AuthenticatedReportesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/usuarios': {
+      id: '/_authenticated/usuarios'
+      path: '/usuarios'
+      fullPath: '/usuarios'
+      preLoaderRoute: typeof AuthenticatedUsuariosRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/maquinaria/': {
@@ -140,13 +245,23 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedEmpleadosRoute: typeof AuthenticatedEmpleadosRoute
+  AuthenticatedInventarioRoute: typeof AuthenticatedInventarioRoute
+  AuthenticatedOrdenesRoute: typeof AuthenticatedOrdenesRoute
   AuthenticatedPanelRoute: typeof AuthenticatedPanelRoute
+  AuthenticatedReportesRoute: typeof AuthenticatedReportesRoute
+  AuthenticatedUsuariosRoute: typeof AuthenticatedUsuariosRoute
   AuthenticatedMaquinariaIdRoute: typeof AuthenticatedMaquinariaIdRoute
   AuthenticatedMaquinariaIndexRoute: typeof AuthenticatedMaquinariaIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedEmpleadosRoute: AuthenticatedEmpleadosRoute,
+  AuthenticatedInventarioRoute: AuthenticatedInventarioRoute,
+  AuthenticatedOrdenesRoute: AuthenticatedOrdenesRoute,
   AuthenticatedPanelRoute: AuthenticatedPanelRoute,
+  AuthenticatedReportesRoute: AuthenticatedReportesRoute,
+  AuthenticatedUsuariosRoute: AuthenticatedUsuariosRoute,
   AuthenticatedMaquinariaIdRoute: AuthenticatedMaquinariaIdRoute,
   AuthenticatedMaquinariaIndexRoute: AuthenticatedMaquinariaIndexRoute,
 }
