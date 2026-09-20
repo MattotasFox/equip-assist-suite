@@ -286,7 +286,7 @@ function Ordenes() {
       <PanelLateral
         abierto={cierre !== null}
         titulo={cierre ? `Cerrar orden #${cierre.folio}` : ""}
-        subtitulo={cierre?.maquinas?.nombre}
+        subtitulo={cierre?.maquinas?.nombre ?? ""}
         onCerrar={() => setCierre(null)}
         pie={
           <div className="space-y-2">
