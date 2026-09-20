@@ -77,14 +77,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "FERRUM · Gestión de maquinaria y mantenimiento" },
+      {
+        name: "description",
+        content:
+          "Sistema ERP para gestionar maquinaria industrial, mantenciones preventivas, inventario de repuestos y costos.",
+      },
+      { property: "og:title", content: "FERRUM · Gestión de maquinaria y mantenimiento" },
+      {
+        property: "og:description",
+        content: "Maquinaria, órdenes de trabajo, repuestos y costos en un solo sistema.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+
     ],
     links: [
       {
