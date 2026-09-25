@@ -14,6 +14,8 @@ export const Route = createFileRoute("/auth")({
         content:
           "Ingresa al sistema FERRUM para gestionar maquinaria industrial, mantenciones, inventario y costos.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:title", content: "Acceso · FERRUM Mantenimiento" },
       {
         property: "og:description",

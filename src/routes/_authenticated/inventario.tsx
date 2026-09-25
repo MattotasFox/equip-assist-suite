@@ -25,6 +25,8 @@ export const Route = createFileRoute("/_authenticated/inventario")({
     meta: [
       { title: "Inventario de repuestos · FERRUM" },
       { name: "description", content: "Stock de repuestos e insumos, mínimos, costo unitario y proveedor." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:title", content: "Inventario de repuestos · FERRUM" },
       { property: "og:description", content: "Control de stock de repuestos con alertas bajo mínimo." },
     ],

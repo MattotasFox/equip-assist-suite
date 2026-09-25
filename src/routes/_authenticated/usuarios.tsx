@@ -12,6 +12,8 @@ export const Route = createFileRoute("/_authenticated/usuarios")({
     meta: [
       { title: "Usuarios y permisos · FERRUM" },
       { name: "description", content: "Administra los roles de acceso del equipo: administrador, técnico y RRHH." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:title", content: "Usuarios y permisos · FERRUM" },
       { property: "og:description", content: "Gestión de roles y permisos del sistema." },
     ],

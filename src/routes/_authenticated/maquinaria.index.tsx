@@ -25,6 +25,8 @@ export const Route = createFileRoute("/_authenticated/maquinaria/")({
     meta: [
       { title: "Maquinaria · FERRUM" },
       { name: "description", content: "Listado de maquinaria industrial con estado, próxima mantención y alertas." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:title", content: "Maquinaria · FERRUM" },
       { property: "og:description", content: "Inventario de equipos, estado operativo y mantenciones." },
     ],

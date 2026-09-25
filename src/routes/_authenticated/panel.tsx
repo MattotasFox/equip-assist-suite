@@ -9,6 +9,8 @@ export const Route = createFileRoute("/_authenticated/panel")({
     meta: [
       { title: "Inicio · FERRUM Mantenimiento" },
       { name: "description", content: "Resumen de maquinaria operativa, mantenciones próximas, stock bajo y costos del mes." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:title", content: "Inicio · FERRUM Mantenimiento" },
       { property: "og:description", content: "Resumen operativo de maquinaria, mantenciones y costos." },
     ],

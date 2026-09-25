@@ -9,6 +9,8 @@ export const Route = createFileRoute("/_authenticated/maquinaria/$id")({
     meta: [
       { title: "Ficha de máquina · FERRUM" },
       { name: "description", content: "Datos generales, estado de mantención e historial cronológico del equipo." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:title", content: "Ficha de máquina · FERRUM" },
       { property: "og:description", content: "Detalle del equipo y su historial de mantenciones." },
     ],

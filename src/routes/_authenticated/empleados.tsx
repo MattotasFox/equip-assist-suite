@@ -22,6 +22,8 @@ export const Route = createFileRoute("/_authenticated/empleados")({
     meta: [
       { title: "Empleados · FERRUM" },
       { name: "description", content: "Fichas de personal, tarifa por hora y sueldo base para Admin y RRHH." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:title", content: "Empleados · FERRUM" },
       { property: "og:description", content: "Personal técnico y administrativo con tarifas y sueldos." },
     ],

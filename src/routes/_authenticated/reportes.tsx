@@ -11,6 +11,8 @@ export const Route = createFileRoute("/_authenticated/reportes")({
     meta: [
       { title: "Reportes y costos · FERRUM" },
       { name: "description", content: "Costos por orden, por máquina y por período, con gráfico mensual y exportación CSV." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:title", content: "Reportes y costos · FERRUM" },
       { property: "og:description", content: "Análisis de costos de mantención y remuneraciones por período." },
     ],
