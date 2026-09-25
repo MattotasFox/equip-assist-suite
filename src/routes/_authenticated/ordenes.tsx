@@ -28,6 +28,8 @@ export const Route = createFileRoute("/_authenticated/ordenes")({
     meta: [
       { title: "Órdenes de trabajo · FERRUM" },
       { name: "description", content: "Crea, programa y cierra órdenes de mantención con consumo de repuestos y horas." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:title", content: "Órdenes de trabajo · FERRUM" },
       { property: "og:description", content: "Mantenciones preventivas y correctivas con costos por orden." },
     ],
@@ -173,8 +175,8 @@ function Ordenes() {
         </>
       }
     >
-      <Tarjeta className="overflow-hidden">
-        <table className="w-full text-sm">
+      <Tarjeta className="overflow-x-auto">
+        <table className="w-full min-w-[900px] text-sm">
           <thead>
             <tr className="border-b border-line text-left font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
               <th className="px-5 py-3 font-normal">Folio</th>

@@ -25,6 +25,8 @@ export const Route = createFileRoute("/_authenticated/inventario")({
     meta: [
       { title: "Inventario de repuestos · FERRUM" },
       { name: "description", content: "Stock de repuestos e insumos, mínimos, costo unitario y proveedor." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:title", content: "Inventario de repuestos · FERRUM" },
       { property: "og:description", content: "Control de stock de repuestos con alertas bajo mínimo." },
     ],
@@ -136,8 +138,8 @@ function Inventario() {
         </>
       }
     >
-      <Tarjeta className="overflow-hidden">
-        <table className="w-full text-sm">
+      <Tarjeta className="overflow-x-auto">
+        <table className="w-full min-w-[780px] text-sm">
           <thead>
             <tr className="border-b border-line text-left font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
               <th className="px-5 py-3 font-normal">Repuesto</th>

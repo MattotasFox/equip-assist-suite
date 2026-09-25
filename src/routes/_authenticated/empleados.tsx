@@ -22,6 +22,8 @@ export const Route = createFileRoute("/_authenticated/empleados")({
     meta: [
       { title: "Empleados · FERRUM" },
       { name: "description", content: "Fichas de personal, tarifa por hora y sueldo base para Admin y RRHH." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:title", content: "Empleados · FERRUM" },
       { property: "og:description", content: "Personal técnico y administrativo con tarifas y sueldos." },
     ],
@@ -116,8 +118,8 @@ function Empleados() {
         </>
       }
     >
-      <Tarjeta className="overflow-hidden">
-        <table className="w-full text-sm">
+      <Tarjeta className="overflow-x-auto">
+        <table className="w-full min-w-[740px] text-sm">
           <thead>
             <tr className="border-b border-line text-left font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
               <th className="px-5 py-3 font-normal">Persona</th>

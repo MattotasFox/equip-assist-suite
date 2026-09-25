@@ -11,6 +11,8 @@ export const Route = createFileRoute("/_authenticated/reportes")({
     meta: [
       { title: "Reportes y costos · FERRUM" },
       { name: "description", content: "Costos por orden, por máquina y por período, con gráfico mensual y exportación CSV." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:title", content: "Reportes y costos · FERRUM" },
       { property: "og:description", content: "Análisis de costos de mantención y remuneraciones por período." },
     ],
@@ -102,8 +104,8 @@ function Reportes() {
       subtitulo="Costos de mantención por orden, máquina y período"
       acciones={
         <>
-          <Campo label=""><Entrada type="date" value={desde} onChange={(e) => setDesde(e.target.value)} className="h-8 w-36 text-xs" /></Campo>
-          <Campo label=""><Entrada type="date" value={hasta} onChange={(e) => setHasta(e.target.value)} className="h-8 w-36 text-xs" /></Campo>
+           <Campo label=""><Entrada type="date" aria-label="Desde" value={desde} onChange={(e) => setDesde(e.target.value)} className="h-9 w-36 text-xs" /></Campo>
+           <Campo label=""><Entrada type="date" aria-label="Hasta" value={hasta} onChange={(e) => setHasta(e.target.value)} className="h-9 w-36 text-xs" /></Campo>
           <BotonSecundario onClick={exportarOrdenes}>Exportar CSV</BotonSecundario>
         </>
       }
@@ -126,9 +128,9 @@ function Reportes() {
       <Tarjeta className="mt-4 p-5">
         <TituloSeccion>Costo mensual de mantención</TituloSeccion>
         {porMes.length === 0 ? <Vacio mensaje="Sin órdenes completadas en el período." /> : null}
-        <div className="mt-6 flex h-52 items-end gap-3">
+        <div className="mt-6 flex h-52 items-end gap-3 overflow-x-auto">
           {porMes.map(([mes, valor]) => (
-            <div key={mes} className="flex flex-1 flex-col items-center gap-2">
+            <div key={mes} className="flex min-w-20 flex-1 flex-col items-center gap-2">
               <div className="text-[10px] text-muted-foreground">{money(valor)}</div>
               <div
                 className="w-full rounded-t-lg bg-accent"
@@ -146,14 +148,14 @@ function Reportes() {
           <div className="mt-3 divide-y divide-line">
             {porMaquina.length === 0 ? <Vacio mensaje="Sin datos en el período." /> : null}
             {porMaquina.map((r) => (
-              <div key={r.maquina.id} className="flex items-center justify-between py-2.5">
-                <div>
+               <div key={r.maquina.id} className="flex items-center justify-between gap-3 py-2.5">
+                 <div className="min-w-0">
                   <div className="text-sm font-medium">{r.maquina.nombre}</div>
                   <div className="font-mono text-[11px] text-muted-foreground">
                     {r.maquina.codigo} · {r.ordenes} órdenes
                   </div>
                 </div>
-                <div className="text-sm font-medium">{money(r.total)}</div>
+                 <div className="shrink-0 text-sm font-medium">{money(r.total)}</div>
               </div>
             ))}
           </div>
@@ -166,14 +168,14 @@ function Reportes() {
             {enRango.map((o) => {
               const c = costoOrden(o);
               return (
-                <div key={o.id} className="flex items-center justify-between py-2.5">
-                  <div>
+                 <div key={o.id} className="flex items-center justify-between gap-3 py-2.5">
+                   <div className="min-w-0">
                     <div className="text-sm font-medium">#{o.folio} · {o.maquinas?.nombre ?? "—"}</div>
                     <div className="text-[11px] text-muted-foreground">
                       {fecha(o.fecha_ejecucion)} · insumos {money(c.insumos)} · obra {money(c.manoObra)}
                     </div>
                   </div>
-                  <div className="text-sm font-medium">{money(c.total)}</div>
+                   <div className="shrink-0 text-sm font-medium">{money(c.total)}</div>
                 </div>
               );
             })}

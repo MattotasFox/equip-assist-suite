@@ -1,9 +1,10 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth, iniciales, etiquetaRol } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 type Item = { to: string; label: string; icono: ReactNode; ver: (r: Permisos) => boolean };
 type Permisos = { admin: boolean; tecnico: boolean; rrhh: boolean };
@@ -114,6 +115,15 @@ export function AppShell({
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const [menuAbierto, setMenuAbierto] = useState(false);
+  useEffect(() => {
+    if (!menuAbierto) return;
+    const cerrarConEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuAbierto(false);
+    };
+    window.addEventListener("keydown", cerrarConEscape);
+    return () => window.removeEventListener("keydown", cerrarConEscape);
+  }, [menuAbierto]);
   const permisos: Permisos = { admin: esAdmin, tecnico: esTecnico, rrhh: esRRHH };
   const rolPrincipal = esAdmin ? "admin" : esRRHH ? "rrhh" : esTecnico ? "tecnico" : undefined;
 
@@ -125,8 +135,17 @@ export function AppShell({
   }
 
   return (
-    <div className="flex h-screen overflow-hidden bg-base font-sans text-ink antialiased">
-      <aside className="flex w-60 shrink-0 flex-col bg-sidebar text-sidebar-foreground">
+    <div className="flex h-dvh overflow-hidden bg-base font-sans text-ink antialiased">
+      {menuAbierto ? (
+        <div className="fixed inset-0 z-40 bg-ink/50 md:hidden" onClick={() => setMenuAbierto(false)} aria-hidden="true" />
+      ) : null}
+      <aside
+        id="navegacion-principal"
+        className={cn(
+          "fixed inset-y-0 left-0 z-50 flex w-60 shrink-0 flex-col bg-sidebar text-sidebar-foreground transition-transform duration-200 md:static md:z-auto md:translate-x-0",
+          menuAbierto ? "translate-x-0" : "-translate-x-full",
+        )}
+      >
         <div className="flex items-center gap-2.5 px-5 pb-4 pt-5">
           <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-clay text-sidebar shadow-clay-sm">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="size-5">
@@ -140,9 +159,12 @@ export function AppShell({
               Mantenimiento
             </div>
           </div>
+          <Button variant="ghost" size="icon" aria-label="Cerrar menú" className="ml-auto min-h-11 min-w-11 text-sidebar-foreground hover:bg-surface/10 hover:text-surface md:hidden" onClick={() => setMenuAbierto(false)}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 6l12 12M18 6 6 18" /></svg>
+          </Button>
         </div>
 
-        <nav className="mt-1 flex-1 space-y-0.5 px-3">
+        <nav className="mt-1 flex-1 space-y-0.5 overflow-y-auto px-3">
           <div className="px-2 pb-1.5 pt-2 font-mono text-[10px] uppercase tracking-widest text-sidebar-foreground/40">
             Módulos
           </div>
@@ -154,8 +176,9 @@ export function AppShell({
                 <Link
                   key={i.to}
                   to={i.to}
+                  onClick={() => setMenuAbierto(false)}
                   className={cn(
-                    "flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition-colors",
+                    "flex min-h-11 items-center gap-3 rounded-xl px-3 py-2 text-sm transition-colors",
                     activo
                       ? "bg-surface/10 font-medium text-surface shadow-clay-sm"
                       : "text-sidebar-foreground/70 hover:bg-surface/5 hover:text-surface",
@@ -180,25 +203,31 @@ export function AppShell({
                 <div className="text-[10px] text-sidebar-foreground/50">{etiquetaRol(rolPrincipal as never)}</div>
               </div>
             </div>
-            <button
+            <Button
               onClick={cerrarSesion}
-              className="mt-3 w-full rounded-lg bg-surface/10 py-1.5 text-[11px] font-medium text-surface hover:bg-surface/20"
+              variant="ghost"
+              className="mt-3 w-full bg-surface/10 text-xs text-surface hover:bg-surface/20 hover:text-surface"
             >
               Cerrar sesión
-            </button>
+            </Button>
           </div>
         </div>
       </aside>
 
       <main className="flex min-w-0 flex-1 flex-col">
-        <header className="flex items-center justify-between gap-4 border-b border-line bg-surface/80 px-6 py-3.5">
-          <div>
-            <h1 className="font-serif text-2xl leading-none tracking-tight">{titulo}</h1>
+        <header className="border-b border-line bg-surface/80 px-4 py-3 md:flex md:items-center md:justify-between md:gap-4 md:px-6 md:py-3.5">
+          <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-2 md:block">
+            <Button variant="ghost" size="icon" className="min-h-11 min-w-11 md:hidden" aria-label="Abrir menú" aria-expanded={menuAbierto} aria-controls="navegacion-principal" onClick={() => setMenuAbierto(true)}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+            </Button>
+            <div className="min-w-0">
+            <h1 className="truncate font-serif text-xl leading-tight md:text-2xl">{titulo}</h1>
             {subtitulo ? <p className="mt-1 text-xs text-muted-foreground">{subtitulo}</p> : null}
+            </div>
           </div>
-          <div className="flex items-center gap-3">{acciones}</div>
+          {acciones ? <div className="mt-3 flex min-w-0 flex-wrap items-center gap-2 md:mt-0 md:justify-end">{acciones}</div> : null}
         </header>
-        <div className="flex-1 overflow-y-auto px-6 py-5">{children}</div>
+        <div className="min-w-0 flex-1 overflow-y-auto px-4 py-4 md:px-6 md:py-5">{children}</div>
       </main>
     </div>
   );

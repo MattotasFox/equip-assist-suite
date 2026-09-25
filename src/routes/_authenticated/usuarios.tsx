@@ -12,6 +12,8 @@ export const Route = createFileRoute("/_authenticated/usuarios")({
     meta: [
       { title: "Usuarios y permisos · FERRUM" },
       { name: "description", content: "Administra los roles de acceso del equipo: administrador, técnico y RRHH." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:title", content: "Usuarios y permisos · FERRUM" },
       { property: "og:description", content: "Gestión de roles y permisos del sistema." },
     ],
@@ -67,14 +69,14 @@ function Usuarios() {
 
   return (
     <AppShell titulo="Usuarios y permisos" subtitulo={`${usuarios.length} cuentas con acceso al sistema`}>
-      <Tarjeta className="overflow-hidden">
+      <Tarjeta className="overflow-x-auto">
         <div className="border-b border-line px-5 py-4">
           <TituloSeccion>Cuentas registradas</TituloSeccion>
           <p className="mt-1 text-xs text-muted-foreground">
             El rol define qué módulos ve cada persona. Los permisos también se aplican en la base de datos.
           </p>
         </div>
-        <table className="w-full text-sm">
+        <table className="w-full min-w-[650px] text-sm">
           <thead>
             <tr className="border-b border-line text-left font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
               <th className="px-5 py-3 font-normal">Persona</th>
