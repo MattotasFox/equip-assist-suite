@@ -102,8 +102,8 @@ function Reportes() {
       subtitulo="Costos de mantención por orden, máquina y período"
       acciones={
         <>
-          <Campo label=""><Entrada type="date" value={desde} onChange={(e) => setDesde(e.target.value)} className="h-8 w-36 text-xs" /></Campo>
-          <Campo label=""><Entrada type="date" value={hasta} onChange={(e) => setHasta(e.target.value)} className="h-8 w-36 text-xs" /></Campo>
+           <Campo label=""><Entrada type="date" aria-label="Desde" value={desde} onChange={(e) => setDesde(e.target.value)} className="h-9 w-36 text-xs" /></Campo>
+           <Campo label=""><Entrada type="date" aria-label="Hasta" value={hasta} onChange={(e) => setHasta(e.target.value)} className="h-9 w-36 text-xs" /></Campo>
           <BotonSecundario onClick={exportarOrdenes}>Exportar CSV</BotonSecundario>
         </>
       }

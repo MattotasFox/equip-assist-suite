@@ -60,7 +60,7 @@ export function Buscador({
   placeholder?: string;
 }) {
   return (
-    <div className="relative min-w-0 flex-1 sm:flex-none">
+    <div className="relative min-w-0 basis-full sm:basis-auto">
       <svg
         viewBox="0 0 24 24"
         fill="none"
