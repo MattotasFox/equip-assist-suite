@@ -215,7 +215,7 @@ export function AppShell({
       </aside>
 
       <main className="flex min-w-0 flex-1 flex-col">
-        <header className="border-b border-line bg-surface/80 px-4 py-3 md:px-6 md:py-3.5">
+        <header className="border-b border-line bg-surface/80 px-4 py-3 md:flex md:items-center md:justify-between md:gap-4 md:px-6 md:py-3.5">
           <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-2 md:block">
             <Button variant="ghost" size="icon" className="min-h-11 min-w-11 md:hidden" aria-label="Abrir menú" aria-expanded={menuAbierto} aria-controls="navegacion-principal" onClick={() => setMenuAbierto(true)}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
@@ -225,7 +225,7 @@ export function AppShell({
             {subtitulo ? <p className="mt-1 text-xs text-muted-foreground">{subtitulo}</p> : null}
             </div>
           </div>
-          {acciones ? <div className="mt-3 flex min-w-0 flex-wrap items-center gap-2 md:mt-3 lg:mt-0">{acciones}</div> : null}
+          {acciones ? <div className="mt-3 flex min-w-0 flex-wrap items-center gap-2 md:mt-0 md:justify-end">{acciones}</div> : null}
         </header>
         <div className="min-w-0 flex-1 overflow-y-auto px-4 py-4 md:px-6 md:py-5">{children}</div>
       </main>

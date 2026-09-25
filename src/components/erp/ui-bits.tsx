@@ -60,7 +60,7 @@ export function Buscador({
   placeholder?: string;
 }) {
   return (
-    <div className="relative">
+    <div className="relative min-w-0 flex-1 sm:flex-none">
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -76,7 +76,7 @@ export function Buscador({
         value={valor}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="h-8 w-48 rounded-lg bg-base pl-8 pr-2 text-xs text-ink ring-1 ring-line placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-accent/40"
+        className="h-9 w-full min-w-0 rounded-lg bg-base pl-8 pr-2 text-xs text-ink ring-1 ring-line placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-accent/40 sm:w-48"
       />
     </div>
   );
@@ -184,7 +184,7 @@ export function PanelLateral({
   return (
     <>
       <div className="fixed inset-0 z-40 bg-ink/20" onClick={onCerrar} />
-      <aside className="fixed right-0 top-0 z-50 flex h-screen w-full max-w-[420px] flex-col bg-surface shadow-clay ring-1 ring-line">
+      <aside className="fixed right-0 top-0 z-50 flex h-dvh w-full max-w-[420px] flex-col bg-surface shadow-clay ring-1 ring-line">
         <div className="flex items-center justify-between border-b border-line px-5 py-4">
           <div>
             <div className="font-serif text-lg leading-none tracking-tight">{titulo}</div>

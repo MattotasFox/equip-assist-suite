@@ -57,15 +57,15 @@ function FichaMaquina() {
     >
       <div className="grid gap-4 xl:grid-cols-[1.2fr_1fr]">
         <Tarjeta className="p-5">
-          <div className="flex gap-5">
-            <div className="h-32 w-40 shrink-0 overflow-hidden rounded-xl bg-base ring-1 ring-line">
+          <div className="flex flex-col gap-5 sm:flex-row">
+            <div className="h-32 w-full shrink-0 overflow-hidden rounded-xl bg-base ring-1 ring-line sm:w-40">
               {maquina.foto_url ? (
                 <img src={maquina.foto_url} alt={`Fotografía de ${maquina.nombre}`} className="h-full w-full object-cover" loading="lazy" />
               ) : (
                 <div className="grid h-full place-items-center text-[10px] uppercase tracking-widest text-muted-foreground">Sin foto</div>
               )}
             </div>
-            <div className="grid flex-1 grid-cols-2 gap-4">
+            <div className="grid min-w-0 flex-1 grid-cols-2 gap-4">
               <Dato etiqueta="Ubicación" valor={maquina.ubicacion ?? "—"} />
               <Dato etiqueta="Año" valor={maquina.anio ? String(maquina.anio) : "—"} />
               <Dato etiqueta="Periodicidad" valor={`${maquina.periodicidad_dias} días`} />

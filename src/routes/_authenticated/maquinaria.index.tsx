@@ -120,8 +120,8 @@ function Maquinaria() {
         </>
       }
     >
-      <Tarjeta className="overflow-hidden">
-        <table className="w-full text-sm">
+      <Tarjeta className="overflow-x-auto">
+        <table className="w-full min-w-[740px] text-sm">
           <thead>
             <tr className="border-b border-line text-left font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
               <th className="px-5 py-3 font-normal">Equipo</th>
