@@ -111,7 +111,7 @@ export function AppShell({
   acciones?: ReactNode;
   children: ReactNode;
 }) {
-  const { sesion, esAdmin, esTecnico, esRRHH } = useAuth();
+  const { sesion, cargando, esAdmin, esTecnico, esRRHH } = useAuth();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -200,7 +200,7 @@ export function AppShell({
               </div>
               <div className="min-w-0 leading-tight">
                 <div className="truncate text-xs font-medium text-surface">{sesion?.nombre}</div>
-                <div className="text-[10px] text-sidebar-foreground/50">{etiquetaRol(rolPrincipal as never)}</div>
+                <div className="text-[10px] text-sidebar-foreground/50">{cargando ? "Cargando…" : etiquetaRol(rolPrincipal)}</div>
               </div>
             </div>
             <Button
