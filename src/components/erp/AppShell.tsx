@@ -154,7 +154,7 @@ export function AppShell({
             </svg>
           </div>
           <div className="leading-tight">
-            <div className="text-sm font-semibold tracking-tight text-surface">FERRUM</div>
+            <div className="text-sm font-semibold tracking-tight text-surface">BP Glass</div>
             <div className="font-mono text-[10px] uppercase tracking-widest text-sidebar-foreground/50">
               Mantenimiento
             </div>

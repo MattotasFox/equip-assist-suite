@@ -20,11 +20,11 @@ import { money, fecha } from "@/lib/format";
 export const Route = createFileRoute("/_authenticated/empleados")({
   head: () => ({
     meta: [
-      { title: "Empleados · FERRUM" },
+      { title: "Empleados · BP Glass" },
       { name: "description", content: "Fichas de personal, tarifa por hora y sueldo base para Admin y RRHH." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { property: "og:title", content: "Empleados · FERRUM" },
+      { property: "og:title", content: "Empleados · BP Glass" },
       { property: "og:description", content: "Personal técnico y administrativo con tarifas y sueldos." },
     ],
   }),

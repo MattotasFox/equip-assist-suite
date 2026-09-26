@@ -7,11 +7,11 @@ import { fecha, money, diasHasta, nivelMantencion } from "@/lib/format";
 export const Route = createFileRoute("/_authenticated/maquinaria/$id")({
   head: () => ({
     meta: [
-      { title: "Ficha de máquina · FERRUM" },
+      { title: "Ficha de máquina · BP Glass" },
       { name: "description", content: "Datos generales, estado de mantención e historial cronológico del equipo." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { property: "og:title", content: "Ficha de máquina · FERRUM" },
+      { property: "og:title", content: "Ficha de máquina · BP Glass" },
       { property: "og:description", content: "Detalle del equipo y su historial de mantenciones." },
     ],
   }),
