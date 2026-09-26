@@ -79,13 +79,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "FERRUM · Gestión de maquinaria y mantenimiento" },
+      { title: "BP Glass · Gestión de maquinaria y mantenimiento" },
       {
         name: "description",
         content:
           "Sistema ERP para gestionar maquinaria industrial, mantenciones preventivas, inventario de repuestos y costos.",
       },
-      { property: "og:title", content: "FERRUM · Gestión de maquinaria y mantenimiento" },
+      { property: "og:title", content: "BP Glass · Gestión de maquinaria y mantenimiento" },
       {
         property: "og:description",
         content: "Maquinaria, órdenes de trabajo, repuestos y costos en un solo sistema.",

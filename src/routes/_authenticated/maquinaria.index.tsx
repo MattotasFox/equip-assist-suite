@@ -23,11 +23,11 @@ import { fecha, diasHasta, nivelMantencion } from "@/lib/format";
 export const Route = createFileRoute("/_authenticated/maquinaria/")({
   head: () => ({
     meta: [
-      { title: "Maquinaria · FERRUM" },
+      { title: "Maquinaria · BP Glass" },
       { name: "description", content: "Listado de maquinaria industrial con estado, próxima mantención y alertas." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { property: "og:title", content: "Maquinaria · FERRUM" },
+      { property: "og:title", content: "Maquinaria · BP Glass" },
       { property: "og:description", content: "Inventario de equipos, estado operativo y mantenciones." },
     ],
   }),

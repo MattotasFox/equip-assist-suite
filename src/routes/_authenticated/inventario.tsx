@@ -23,11 +23,11 @@ import { money } from "@/lib/format";
 export const Route = createFileRoute("/_authenticated/inventario")({
   head: () => ({
     meta: [
-      { title: "Inventario de repuestos · FERRUM" },
+      { title: "Inventario de repuestos · BP Glass" },
       { name: "description", content: "Stock de repuestos e insumos, mínimos, costo unitario y proveedor." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { property: "og:title", content: "Inventario de repuestos · FERRUM" },
+      { property: "og:title", content: "Inventario de repuestos · BP Glass" },
       { property: "og:description", content: "Control de stock de repuestos con alertas bajo mínimo." },
     ],
   }),

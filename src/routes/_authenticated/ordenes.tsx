@@ -26,11 +26,11 @@ import { fecha, money, hoyISO } from "@/lib/format";
 export const Route = createFileRoute("/_authenticated/ordenes")({
   head: () => ({
     meta: [
-      { title: "Órdenes de trabajo · FERRUM" },
+      { title: "Órdenes de trabajo · BP Glass" },
       { name: "description", content: "Crea, programa y cierra órdenes de mantención con consumo de repuestos y horas." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { property: "og:title", content: "Órdenes de trabajo · FERRUM" },
+      { property: "og:title", content: "Órdenes de trabajo · BP Glass" },
       { property: "og:description", content: "Mantenciones preventivas y correctivas con costos por orden." },
     ],
   }),

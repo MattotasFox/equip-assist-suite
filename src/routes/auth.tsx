@@ -9,15 +9,15 @@ export const Route = createFileRoute("/auth")({
   ssr: false,
   head: () => ({
     meta: [
-      { title: "Acceso · FERRUM Mantenimiento" },
+      { title: "Acceso · BP Glass Mantenimiento" },
       {
         name: "description",
         content:
-          "Ingresa al sistema FERRUM para gestionar maquinaria industrial, mantenciones, inventario y costos.",
+          "Ingresa al sistema BP Glass para gestionar maquinaria industrial, mantenciones, inventario y costos.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { property: "og:title", content: "Acceso · FERRUM Mantenimiento" },
+      { property: "og:title", content: "Acceso · BP Glass Mantenimiento" },
       {
         property: "og:description",
         content: "Sistema de gestión de maquinaria industrial y mantenimiento.",
@@ -91,7 +91,7 @@ function AuthPage() {
               <path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.4 5.4l2.1 2.1M16.5 16.5l2.1 2.1M18.6 5.4l-2.1 2.1M7.5 16.5l-2.1 2.1" />
             </svg>
           </div>
-          <div className="text-sm font-semibold tracking-tight text-surface">FERRUM</div>
+          <div className="text-sm font-semibold tracking-tight text-surface">BP Glass</div>
         </div>
         <div>
           <h2 className="max-w-sm font-serif text-4xl leading-tight text-surface">

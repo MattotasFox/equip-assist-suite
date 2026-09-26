@@ -10,11 +10,11 @@ import { fecha } from "@/lib/format";
 export const Route = createFileRoute("/_authenticated/usuarios")({
   head: () => ({
     meta: [
-      { title: "Usuarios y permisos · FERRUM" },
+      { title: "Usuarios y permisos · BP Glass" },
       { name: "description", content: "Administra los roles de acceso del equipo: administrador, técnico y RRHH." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { property: "og:title", content: "Usuarios y permisos · FERRUM" },
+      { property: "og:title", content: "Usuarios y permisos · BP Glass" },
       { property: "og:description", content: "Gestión de roles y permisos del sistema." },
     ],
   }),
