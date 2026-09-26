@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 import { BotonPrincipal, Campo, Entrada } from "@/components/erp/ui-bits";
@@ -28,6 +29,7 @@ export const Route = createFileRoute("/auth")({
 
 function AuthPage() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [modo, setModo] = useState<"entrar" | "crear">("entrar");
   const [email, setEmail] = useState("");
   const [clave, setClave] = useState("");
@@ -45,6 +47,7 @@ function AuthPage() {
       if (modo === "entrar") {
         const { error } = await supabase.auth.signInWithPassword({ email, password: clave });
         if (error) throw error;
+        queryClient.removeQueries({ queryKey: ["sesion"] });
         navigate({ to: "/panel", replace: true });
       } else {
         const { data, error } = await supabase.auth.signUp({
@@ -56,7 +59,10 @@ function AuthPage() {
           },
         });
         if (error) throw error;
-        if (data.session) navigate({ to: "/panel", replace: true });
+        if (data.session) {
+          queryClient.removeQueries({ queryKey: ["sesion"] });
+          navigate({ to: "/panel", replace: true });
+        }
         else setAviso("Cuenta creada. Revisa tu correo para confirmarla y luego ingresa.");
       }
     } catch (err) {
